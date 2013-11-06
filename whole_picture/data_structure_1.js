@@ -9,7 +9,7 @@ activities = [
         bids:[]
     },
     {
-        name: "first activity",
+        name: "second activity",
         sign_ups: [
             {
                 name:"仝键",

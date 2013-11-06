@@ -26,7 +26,7 @@ describe("SignUp Render", function() {
             ],
             bids: []
         }];
-        activities.push(two_activities);
+        activities=two_activities;
         localStorage.activities = JSON.stringify(activities);
         localStorage.current_activity = "second activity";
     });

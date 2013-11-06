@@ -14,13 +14,13 @@ describe("Activity", function() {
 
         var activity = new Activity(activity_name);
         activity.create();
-
         var activity_json = JSON.parse(localStorage.activities);
+        var current_activity=JSON.parse(localStorage.current_activity);
         expect(activity_json.length).toBe(1);
         expect(activity_json[0].name).toBe(activity_name);
-        expect(activity_json[0].sign_ups).toBe([]);
-        expect(activity_json[0].bids).toBe([]);
-        expect(localStorage.current_activity).toBe(activity_name);
+        expect(activity_json[0].sign_ups).toEqual([]);
+        expect(activity_json[0].bids).toEqual([]);
+        expect(current_activity.name).toBe(activity_name);
     });
 
 });
