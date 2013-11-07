@@ -16,7 +16,7 @@ describe("Activity", function() {
         activity.create();
 
         var activities_json = JSON.parse(localStorage.activities);
-        expect(activities_ids.length).toBe(1);
+        expect(JSON.parse(localStorage.activity_ids).length).toBe(1);
         expect(activities_json["0"].name).toBe(activity_name);
         expect(JSON.stringify(activities_json["0"].sign_ups)).toBe("[]");
         expect(JSON.stringify(activities_json["0"].bids)).toBe("[]");

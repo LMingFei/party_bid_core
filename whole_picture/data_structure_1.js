@@ -1,7 +1,7 @@
 current_activity = "second activity";
+current_bid = "竞价2";
 is_bidding = "true";
 is_signing_up = "false";
-current_bid = "竞价2";
 activities = [
     {
         name: "first activity",

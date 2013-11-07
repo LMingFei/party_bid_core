@@ -1,9 +1,9 @@
-activity_id_generator = "1"
 current_activity_id = "1";
+current_bid = "竞价2";
 is_bidding = "true";
 is_signing_up = "false";
-current_bid = "竞价2";
-localStorage.actity_ids = ["0","1"];
+activity_id_generator = "1"
+localStorage.activity_ids = ["0","1"];
 activities = {
     "0":{
       name: "first activity",
@@ -58,4 +58,3 @@ activities = {
         }
     }
 };
-
