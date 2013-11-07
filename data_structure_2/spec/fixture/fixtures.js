@@ -3,6 +3,7 @@ function init_activity_database(){
     localStorage.current_activity = "";
     localStorage.activity_ids = '[]';
     localStorage.activities = '{}';
+    localStorage.current_activity_id="";
 }
 
 

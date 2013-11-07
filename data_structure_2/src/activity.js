@@ -48,3 +48,9 @@ Activity.get_current_bid=function(){
 Activity.find_activity_by_id=function(act_id){
     var acts=this.get_activities();
 }
+
+Activity.activity_update=function(activity){
+    var acts=this.get_activities();
+    acts[activity.id]=activity
+    localStorage.activities=JSON.stringify(acts);
+}
