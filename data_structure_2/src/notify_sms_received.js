@@ -4,21 +4,34 @@ function notify_sms_received(sms_json){
 
 var is_signing_up={
     'true':function(sms_json){
-        var new_signer =create_signer(handle_sms(sms_json));
-        var current_activity=Activity.get_activities()[Activity.get_current_activity()]
-        current_activity.sign_ups.push(new_signer);
-        Activity.activity_update(current_activity);
+        if(judge_repeat(Activity.get_activities()[Activity.get_current_activity_id()].sign_ups,sms_json.messages[0].phone)==undefined){
+            var new_signer =create_signer(handle_sms(sms_json));
+            var current_activity=Activity.get_activities()[Activity.get_current_activity()]
+            current_activity.sign_ups.push(new_signer);
+            Activity.activity_update(current_activity);
+        }
     },
     'false':function(){return false},
     '':function(){return false}
 }
 
+var is_is_bidding_up={
+    'true':function(){
+        var is_sign=judge_repeat(Activity.get_activities()[Activity.get_current_activity_id()].sign_ups,sms_json.messages[0].phone);
+        var is_bid=judge_repeat(Activity.get_activities()[Activity.get_current_activity_id()].biddings[Activity.get_current_bid()],sms_json.messages[0].phone)
+        if(is_sign!=undefined&&is_bid==undefined){
+
+        }
+    },
+    'false':function(){return false},
+    '':function(){return false}
+}
 var judge_prefix={
     'bm':function(sms_json){
-        is_signing_up[localStorage.is_signing_up](sms_json)
+        is_signing_up[Activity.get_is_signing_up()](sms_json)
     },
     'jj':function(sms_json){
-
+        is_is_bidding_up[Activity.get_is_bidding_up()](sms_json)
     }
 }
 

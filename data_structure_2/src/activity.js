@@ -45,12 +45,24 @@ Activity.get_current_bid=function(){
     return localStorage.current_bid;
 }
 
-Activity.find_activity_by_id=function(act_id){
-    var acts=this.get_activities();
+Activity.get_current_activity_id=function(){
+    return localStorage.current_activity_id;
+}
+
+Activity.get_is_signing_up=function(){
+    return localStorage.is_signing_up;
+}
+
+Activity.get_is_bidding_up=function(){
+    return localStorage.is_bidding;
+}
+
+Activity.update_activities=function(acts){
+    localStorage.activities=acts;
 }
 
 Activity.activity_update=function(activity){
     var acts=this.get_activities();
     acts[activity.id]=activity
-    localStorage.activities=JSON.stringify(acts);
+    Activity.update_activities(JSON.stringify(acts));
 }

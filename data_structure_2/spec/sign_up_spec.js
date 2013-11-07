@@ -28,7 +28,9 @@ describe("SignUp", function() {
         var sms_json = build_sms_json("BM仝键", "13600000000");
         localStorage.is_signing_up = "true";
         notify_sms_received(sms_json);
-        notify_sms_received(sms_json);
+        var sms_json2 = build_sms_json("BM仝键", "13600000000");
+        notify_sms_received(sms_json2);
+
 
         var activities = JSON.parse(localStorage.activities);
         expect(activities[1].sign_ups.length).toBe(1);

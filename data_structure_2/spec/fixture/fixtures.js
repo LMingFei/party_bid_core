@@ -2,7 +2,7 @@ function init_activity_database(){
     localStorage.activity_id_generator = "0";
     localStorage.current_activity = "";
     localStorage.activity_ids = '[]';
-    localStorage.activities = '{}';
+    localStorage.activities = '[]';
     localStorage.current_activity_id="";
 }
 
@@ -29,6 +29,7 @@ function init_two_activity() {
     activities["0"] = activity_1;
     activities["1"] = activity_2;
     activity_ids.push("0","1");
+    localStorage.current_activity_id=1;
     localStorage.activities = JSON.stringify(activities);
     localStorage.activity_ids = JSON.stringify(activity_ids);
 }
