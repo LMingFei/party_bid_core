@@ -9,7 +9,9 @@ describe("Bid", function() {
         activities.push(activity);
         localStorage.activities = JSON.stringify(activities);
         localStorage.current_activity_id = 0;
+        localStorage.activity_ids='[0]'
         localStorage.is_bidding = "";
+        localStorage.current_activity="first activity"
     });
 
     afterEach(function(){
@@ -20,7 +22,6 @@ describe("Bid", function() {
         create_new_bid("1");
 
         var activities =JSON.parse(localStorage.activities);
-        console.log(activities[0])
         expect(Object.getOwnPropertyNames(activities[0].biddings).length).toBe(1);
         expect(JSON.stringify(activities[0].biddings["竞价1"])).toBe("[]");
     });

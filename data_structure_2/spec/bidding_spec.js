@@ -31,11 +31,13 @@ describe("Bidding", function() {
                 "竞价1": []
                 }
         }];
-        activities.push(two_activities);
+        activities=two_activities;
+        localStorage.current_activity_id=1;
         localStorage.activities = JSON.stringify(activities);
-        localStorage.current_activity = "1";
+        localStorage.current_activity = "second activity";
         localStorage.current_bid = "竞价1";
         localStorage.is_bidding = "";
+        localStorage.activity_ids = JSON.stringify([0,1]);
     });
 
     afterEach(function(){
@@ -47,12 +49,11 @@ describe("Bidding", function() {
         var sms_json = build_sms_json("JJ12", phone_no);
         localStorage.is_bidding = "true";
         notify_sms_received(sms_json);
-
         var activities = JSON.parse(localStorage.activities);
-        expect(activities["1"].biddings["竞价1"].length).toBe(1);
-        expect(activities["1"].biddings["竞价1"][0].name).toBe("仝键");
-        expect(activities["1"].biddings["竞价1"][0].phone).toBe(phone_no);
-        expect(activities["1"].biddings["竞价1"][0].price).toBe("12");
+        expect(activities[1].biddings["竞价1"].length).toBe(1);
+        expect(activities[1].biddings["竞价1"][0].name).toBe("仝键");
+        expect(activities[1].biddings["竞价1"][0].phone).toBe(phone_no);
+        expect(activities[1].biddings["竞价1"][0].price).toBe("12");
     });
 
     it("should bid failed when it is not on bidding", function(){
@@ -72,6 +73,7 @@ describe("Bidding", function() {
         expect(activities["1"].biddings["竞价1"].length).toBe(0);
         // no attribute
         localStorage.removeItem("is_bidding");
+
         notify_sms_received(sms_json);
 
         var activities = JSON.parse(localStorage.activities);
@@ -93,7 +95,8 @@ describe("Bidding", function() {
         var sms_json = build_sms_json("JJ12", phone_no);
         localStorage.is_bidding = "true";
         notify_sms_received(sms_json);
-        notify_sms_received(sms_json);
+        var sms_json1 = build_sms_json("JJ12", phone_no);
+        notify_sms_received(sms_json1);
 
         var activities = JSON.parse(localStorage.activities);
         expect(activities["1"].biddings["竞价1"].length).toBe(1);

@@ -63,6 +63,6 @@ Activity.update_activities=function(acts){
 
 Activity.activity_update=function(activity){
     var acts=this.get_activities();
-    acts[activity.id]=activity
+    acts[get_act_id_by_name(activity.name)]=activity;
     Activity.update_activities(JSON.stringify(acts));
 }
