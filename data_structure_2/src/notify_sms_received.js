@@ -31,7 +31,6 @@ var is_bidding_up={
     },
     'false':function(){return false},
     '':function(){
-        console.log(12)
         return false
     },
     'undefined':function(){return false}
@@ -68,7 +67,7 @@ function create_signer(sms_json){
 
 function create_bidding(sms_json){
     var new_bidding={
-        name:get_username_by_phone(sms_json.messages[0].message),phone:sms_json.messages[0].phone,price:sms_json.messages[0].message
+        name:get_username_by_phone(sms_json.messages[0].phone),phone:sms_json.messages[0].phone,price:sms_json.messages[0].message
     }
     return new_bidding;
 }
@@ -91,6 +90,12 @@ function get_act_id_by_name(activity_name){
 function get_username_by_phone(phone){
     var signs=Activity.get_activities()[Activity.get_current_activity_id()].sign_ups;
     return _.find(signs,function(sign){
-        return sign.phone=phone;
+        return sign.phone==phone;
     }).name
+}
+
+function get_min_unique_price(bid_array){
+    return _.find(_.groupBy(bid_array,'price'),function(price_array){
+        return price_array.length==1
+    })
 }

@@ -63,6 +63,7 @@ describe("Bids and Bidding Render", function() {
         localStorage.activity_ids = JSON.stringify(activity_ids);
         localStorage.current_activity = "1";
         localStorage.is_bidding = "";
+        localStorage.current_activity_id=1;
     });
 
     afterEach(function(){
