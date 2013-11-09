@@ -27,7 +27,7 @@ var is_signing_up={
 var is_bidding_up={
     'true':function(sms_json){
         var is_sign=judge_repeat(_.where(Sign_up.get_sign_ups(),{activity_id:Activity.get_current_activity_id()}),sms_json.messages[0].phone);
-        var is_bid=judge_repeat(_.where(Bid.get_bids(),{name:Bid.get_current_bid(),activity_id:Activity.get_current_activity_id()}),sms_json.messages[0].phone);
+        var is_bid=judge_repeat(_.where(Bid.get_bids(),{name:Bid.get_current_bid(),activity_id:Activity.get_current_activity_id()})[0].biddings,sms_json.messages[0].phone);
         if(is_sign!=undefined&&is_bid==undefined){
             var new_bidding=new Bidding(handle_sms(sms_json));
             new_bidding.insert();

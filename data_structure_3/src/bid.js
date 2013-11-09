@@ -39,7 +39,7 @@ function Bidding(sms_json){
 
 Bidding.prototype.insert=function(){
     var bids=Bid.get_bids();
-    bids[this.name.substr(2)].biddings.push(this)
+    bids[Bid.get_current_bid().substr(2)].biddings.push(this)
     Bid.set_bids(JSON.stringify(bids));
 }
 

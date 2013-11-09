@@ -6,6 +6,7 @@ describe("Bids and Bidding Render", function() {
         init_activity_database();
         init_two_activity();
         init_sign_ups();
+        init_bids();
         var bids = [
             {
                 name: "竞价1",

@@ -58,3 +58,31 @@ function init_sign_ups(){
     ]
     localStorage.sign_ups = JSON.stringify(sign_ups);
 }
+
+function init_bids(){
+    var bids=[
+        {
+            name: "竞价0",
+            activity_id:"0",
+            biddings:[
+            ]
+        },
+        {
+            name: "竞价1",
+            activity_id:"1",
+            biddings:[
+
+            ]
+
+        },
+        {
+            name: "竞价2",
+            activity_id:"1",
+            biddings:[
+
+            ]
+
+        }
+    ]
+    localStorage.bids=JSON.stringify(bids)
+}
