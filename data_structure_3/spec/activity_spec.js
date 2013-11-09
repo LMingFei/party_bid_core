@@ -18,7 +18,7 @@ describe("Activity", function() {
         var activities_json = JSON.parse(localStorage.activities);
         expect(activities_json[0].id).toBe("0");
         expect(activities_json[0].name).toBe(activity_name);
-        expect(localStorage.current_activity).toBe("0");
+        expect(localStorage.current_activity_id).toBe("0");
     });
 
     it("should activity id generator increase with creating activity", function(){

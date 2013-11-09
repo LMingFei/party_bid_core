@@ -49,7 +49,7 @@ sign_ups = [
 
 bids = [
     {
-        name: "竞价1",
+        name: "竞价0",
         activity_id:"0",
         biddings:[
             {

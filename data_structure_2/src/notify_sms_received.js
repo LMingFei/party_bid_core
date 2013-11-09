@@ -35,6 +35,7 @@ var is_bidding_up={
     },
     'undefined':function(){return false}
 }
+
 var judge_prefix={
     'bm':function(sms_json){
         is_signing_up[Activity.get_is_signing_up()](sms_json)
