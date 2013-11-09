@@ -6,7 +6,6 @@ describe("Bids and Bidding Render", function() {
         init_activity_database();
         init_two_activity();
         init_sign_ups();
-        init_bids();
         var bids = [
             {
                 name: "竞价1",
@@ -81,7 +80,6 @@ describe("Bids and Bidding Render", function() {
         var biddings = render_biddings("1","竞价2");
 
         expect(biddings.length).toBe(1);
-        expect(biddings[0].name).toBe("于");
         expect(biddings[0].phone).toBe("15600000000");
         expect(biddings[0].price).toBe("12");
     });
