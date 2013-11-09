@@ -7,7 +7,7 @@ function Activity(activity_name){
 }
 
 Activity.prototype.create=function(){
-    var activity_ids=JSON.parse(localStorage.activity_ids);
+    var activity_ids=Activity.get_activity_ids();
     activity_ids.push(this.id.toString());
     localStorage.activity_ids=JSON.stringify(activity_ids)
 
@@ -21,9 +21,9 @@ Activity.prototype.create=function(){
 
 }
 
-Activity.prototype.active=function(){
-    localStorage.current_activity=this.id;
-}
+//Activity.prototype.active=function(){
+//    localStorage.current_activity=this.id;
+//}
 
 Activity.get_activity_id_generator=function(){
     return localStorage.activity_id_generator;
