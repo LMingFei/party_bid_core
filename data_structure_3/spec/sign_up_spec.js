@@ -4,7 +4,7 @@ describe("SignUp", function() {
     beforeEach(function() {
         init_activity_database();
         init_two_activity();
-        localStorage.current_activity = "1";
+        localStorage.current_activity_id = "1";
         localStorage.is_signing_up = "";
     });
 
@@ -29,7 +29,8 @@ describe("SignUp", function() {
         var sms_json = build_sms_json("BM仝键", "13600000000");
         localStorage.is_signing_up = "true";
         notify_sms_received(sms_json);
-        notify_sms_received(sms_json);
+        var sms_json1 = build_sms_json("BM仝键", "13600000000");
+        notify_sms_received(sms_json1);
 
         var sign_ups = JSON.parse(localStorage.sign_ups);
         expect(sign_ups.length).toBe(1);
@@ -43,7 +44,7 @@ describe("SignUp", function() {
         localStorage.is_signing_up = "false";
         notify_sms_received(sms_json);
 
-        var activities = JSON.parse(localStorage.activities);
+        var sign_ups = JSON.parse(localStorage.sign_ups);
         expect(sign_ups.length).toBe(0);
         //is empty string
         localStorage.is_signing_up = "";

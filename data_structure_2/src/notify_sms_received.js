@@ -60,19 +60,19 @@ function trim(str){
     return str.replace(/(^\s*)|(\s*$)/g, "");
 }
 
-//function create_signer(sms_json){
-//    var new_signer={
-//        name:sms_json.messages[0].message,phone:sms_json.messages[0].phone
-//    }
-//    return new_signer;
-//}
+function create_signer(sms_json){
+    var new_signer={
+        name:sms_json.messages[0].message,phone:sms_json.messages[0].phone
+    }
+    return new_signer;
+}
 
-//function create_bidding(sms_json){
-//    var new_bidding={
-//        name:get_username_by_phone(sms_json.messages[0].phone),phone:sms_json.messages[0].phone,price:sms_json.messages[0].message
-//    }
-//    return new_bidding;
-//}
+function create_bidding(sms_json){
+    var new_bidding={
+        name:get_username_by_phone(sms_json.messages[0].phone),phone:sms_json.messages[0].phone,price:sms_json.messages[0].message
+    }
+    return new_bidding;
+}
 
 function judge_repeat(_array,user_phone){
    return _.find(_array,function(obj){
