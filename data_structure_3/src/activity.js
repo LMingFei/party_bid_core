@@ -3,7 +3,7 @@ function Activity(act_name){
     this.id=localStorage.activity_id_generator;
 }
 
-Activity.prototype.create = function (){
+Activity.prototype.insert = function (){
     Activity.set_current_activity_id(this.id);
     Activity.insert_act_into_acts(this);
     localStorage.activity_id_generator=parseInt(this.id)+1;
@@ -35,3 +35,11 @@ Activity.insert_act_into_acts=function(act){
     acts.push(act);
     Activity.set_activities(JSON.stringify(acts))
 }
+
+Activity.get_id_by_name=function(act_name){
+    var acts=Activity.get_activities();
+    return _.find(acts,function(act){
+        return act.name==act_name
+    }).id
+}
+

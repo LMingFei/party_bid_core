@@ -1,11 +1,13 @@
-function Bid(sms_json){
+function Bid(){
     this.name='竞价'+Bid.get_bids().length;
     this.activity_id=Activity.get_current_activity_id();
     this.biddings='[]';
 }
 
-Bid.prototype.create=function(){
-    Bid.insert_bid_into_bids(this);
+Bid.prototype.insert=function(){
+    var bids=Bid.get_bids();
+    bids.push(this);
+    Bid.set_bids(JSON.stringify(bids))
 }
 
 Bid.get_bids=function(){
@@ -24,8 +26,19 @@ Bid.set_bids=function(bids){
     localStorage.bids=bids
 }
 
-Bid.insert_bid_into_bids=function(bid){
+
+
+
+
+
+
+function Bidding(sms_json){
+    this.phone=sms_json.messages[0].phone;
+    this.price=sms_json.messages[0].message;
+}
+
+Bidding.prototype.create=function(){
     var bids=Bid.get_bids();
-    bids.push(bid);
-    Bid.set_bids(JSON.stringify(bids))
+    bids[this.name.substr(2)].biddings.push(this)
+    Bid.set_bids(JSON.stringify(bids));
 }

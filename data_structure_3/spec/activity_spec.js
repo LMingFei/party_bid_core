@@ -13,7 +13,7 @@ describe("Activity", function() {
         var activity_name = "first activity";
 
         var activity = new Activity(activity_name);
-        activity.create();
+        activity.insert();
 
         var activities_json = JSON.parse(localStorage.activities);
         expect(activities_json[0].id).toBe("0");
@@ -23,11 +23,11 @@ describe("Activity", function() {
 
     it("should activity id generator increase with creating activity", function(){
         var activity = new Activity("first activity");
-        activity.create();
+        activity.insert();
         activity = new Activity("second activity");
-        activity.create();
+        activity.insert();
         activity = new Activity("third activity");
-        activity.create();
+        activity.insert();
 
         expect(localStorage.activity_id_generator).toBe("3");
 
