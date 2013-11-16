@@ -36,6 +36,7 @@ describe("Bidding", function() {
         notify_sms_received(sms_json);
 
         var bids = JSON.parse(localStorage.bids);
+
         expect(bids[1].biddings.length).toBe(0);
         // empty string
         localStorage.is_bidding = "";

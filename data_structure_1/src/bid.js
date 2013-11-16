@@ -21,7 +21,7 @@ function Bidding(sms_json){
         return sign_up.phone==sms_json.messages[0].phone;
     })).name;
     this.phone=sms_json.messages[0].phone;
-    this.price=sms_json.messages[0].message.substr(2);
+    this.price=sms_json.messages[0].message;
 }
 
 
@@ -45,12 +45,14 @@ Bidding.prototype.insert=function(){
 
     var activities=Activity.get_activities()
     var current_activity=Activity.get_current_activity();
-    var bids=Activity.get_current_act_obj().bids;
+    var bids=_.find(activities,function(act){
+        return act.name==JSON.parse(current_activity);
+    }).bids
     var current_bid= _.find(bids,function(act_bid){
         return act_bid.name==localStorage.current_bid;
     })
     current_bid.biddings.unshift(this);
-    Activity.update_activities(activities);
+    Activity.update_activities(JSON.stringify(activities));
 }
 
 function render_bids(activity_name){
