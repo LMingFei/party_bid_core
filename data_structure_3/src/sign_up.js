@@ -3,9 +3,8 @@ function Sign_up(sms_json){
     this.phone=sms_json.messages[0].phone;
     this.activity_id = Activity.get_current_activity_id();
 }
-
 Sign_up.prototype.insert=function(){
-    var sign_ups=Sign_up.get_sign_ups();
+   var sign_ups=Sign_up.get_sign_ups();
     sign_ups.push(this)
     Sign_up.set_sign_ups(sign_ups)
 }

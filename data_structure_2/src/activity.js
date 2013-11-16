@@ -41,20 +41,9 @@ Activity.get_activities=function(){
     return JSON.parse(localStorage.activities);
 }
 
-Activity.get_current_bid=function(){
-    return localStorage.current_bid;
-}
 
 Activity.get_current_activity_id=function(){
     return localStorage.current_activity_id;
-}
-
-Activity.get_is_signing_up=function(){
-    return localStorage.is_signing_up;
-}
-
-Activity.get_is_bidding_up=function(){
-    return localStorage.is_bidding;
 }
 
 Activity.update_activities=function(acts){
@@ -63,6 +52,23 @@ Activity.update_activities=function(acts){
 
 Activity.activity_update=function(activity){
     var acts=this.get_activities();
-    acts[get_act_id_by_name(activity.name)]=activity;
+    acts[Activity.get_act_id_by_name(activity.name)]=activity;
     Activity.update_activities(JSON.stringify(acts));
+}
+
+
+Activity.get_act_id_by_name=function(activity_name){
+    var activities=Activity.get_activities();
+    var ids=Activity.get_activity_ids();
+    return _.find(ids,function(id){
+        return activities[id].name==activity_name
+    })
+}
+
+
+Activity.get_username_by_phone=function(phone){
+    var signs=Activity.get_activities()[Activity.get_current_activity_id()].sign_ups;
+    return _.find(signs,function(sign){
+        return sign.phone==phone;
+    }).name
 }
