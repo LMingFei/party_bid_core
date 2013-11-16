@@ -12,7 +12,7 @@ describe("Bid", function() {
         };
         activities.push(activity);
         localStorage.activities = JSON.stringify(activities);
-        localStorage.current_activity = JSON.stringify(activity);
+        localStorage.current_activity = JSON.stringify(activity["name"]);
     });
 
     afterEach(function(){

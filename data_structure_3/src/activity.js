@@ -38,8 +38,8 @@ Activity.insert_act_into_acts=function(act){
 
 Activity.get_id_by_name=function(act_name){
     var acts=Activity.get_activities();
-    return _.find(acts,function(act){
+    return _.indexOf(acts,function(act){
         return act.name==act_name
-    }).id
+    })
 }
 

@@ -34,7 +34,7 @@ describe("Bidding", function() {
         }];
         activities=two_activities;
         localStorage.activities = JSON.stringify(activities);
-        localStorage.current_activity = JSON.stringify(two_activities[1]);
+        localStorage.current_activity = JSON.stringify(two_activities[1]["name"]);
         localStorage.current_bid = "竞价1";
         localStorage.is_bidding = "";
     });
@@ -48,7 +48,6 @@ describe("Bidding", function() {
         var sms_json = build_sms_json("JJ12", phone_no);
         localStorage.is_bidding = "true";
         notify_sms_received(sms_json);
-
         var activities = JSON.parse(localStorage.activities);
         expect(activities[1].bids.length).toBe(1);
         expect(activities[1].bids[0].biddings[0].name).toBe("仝键");

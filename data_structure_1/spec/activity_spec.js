@@ -20,7 +20,7 @@ describe("Activity", function() {
         expect(activity_json[0].name).toBe(activity_name);
         expect(activity_json[0].sign_ups).toEqual([]);
         expect(activity_json[0].bids).toEqual([]);
-        expect(current_activity.name).toBe(activity_name);
+        expect(current_activity).toBe(activity_name);
     });
 
 });
