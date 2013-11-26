@@ -18,10 +18,10 @@ Bid.create_new_bid=function(activity_name){
 function Bidding(sms_json){
     var current_act_obj=Activity.get_current_act_obj();
     this.name= (_.find(current_act_obj.sign_ups,function(sign_up){
-        return sign_up.phone==sms_json.messages[0].phone;
+        return sign_up.phone==sms_json.phone;
     })).name;
-    this.phone=sms_json.messages[0].phone;
-    this.price=sms_json.messages[0].message;
+    this.phone=sms_json.phone;
+    this.price=sms_json.message;
 }
 
 

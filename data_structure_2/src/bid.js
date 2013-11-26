@@ -23,9 +23,9 @@ function Bid(){
 
 
 function Bidding(sms_json){
-    this.name=Activity.get_username_by_phone(sms_json.messages[0].phone)
-    this.phone=sms_json.messages[0].phone;
-    this.price=sms_json.messages[0].message;
+    this.name=Activity.get_username_by_phone(sms_json.phone)
+    this.phone=sms_json.phone;
+    this.price=sms_json.message;
 }
 
 Bidding.prototype.insert=function(){

@@ -1,6 +1,6 @@
 function Sign_up(sms_json){
-    this.name=sms_json.messages[0].message;
-    this.phone=sms_json.messages[0].phone;
+    this.name=sms_json.message;
+    this.phone=sms_json.phone;
 }
 
 Sign_up.prototype.insert=function(){

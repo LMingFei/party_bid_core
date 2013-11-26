@@ -33,8 +33,8 @@ Bid.set_bids=function(bids){
 
 
 function Bidding(sms_json){
-    this.phone=sms_json.messages[0].phone;
-    this.price=sms_json.messages[0].message;
+    this.phone=sms_json.phone;
+    this.price=sms_json.message;
 }
 
 Bidding.prototype.insert=function(){
