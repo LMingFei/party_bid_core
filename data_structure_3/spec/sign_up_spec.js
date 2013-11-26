@@ -53,7 +53,7 @@ describe("SignUp", function() {
         var activities = JSON.parse(localStorage.activities);
         expect(sign_ups.length).toBe(0);
         // no item
-        localStorage.removeItem(is_signing_up);
+        localStorage.removeItem("is_signing_up");
         notify_sms_received(sms_json);
 
         var activities = JSON.parse(localStorage.activities);
