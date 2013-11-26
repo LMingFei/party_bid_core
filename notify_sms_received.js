@@ -5,19 +5,24 @@
  * Time: 下午3:47
  * To change this template use File | Settings | File Templates.
  */
+function notify_sms_received(sms_json){
+    var prefix=get_prefix(sms_json)
+    handle_by_prefix[prefix](sms_json)
+}
+
+
 function handle_sms(sms_json){
-    sms_json.messages[0].message=(trim(sms_json.messages[0].message),sms_json.messages[0].message.substr(2));
+    var message_obj=get_message_obj(sms_json);
+    message_obj.message=(trim(message_obj.message),message_obj.message.substr(2));
     return sms_json;
 }
 
-function get_sms_prefix(sms_json){
-    var message=sms_json.messages[0].message.substr(0,2).toLowerCase();
+function get_prefix(sms_json){
+    var message_obj=get_message_obj(sms_json);
+    var message=message_obj.message.substr(0,2).toLowerCase();
     return message;
 }
 
-function notify_sms_received(sms_json){
-    judge_prefix[get_sms_prefix(sms_json)](sms_json)
-}
 
 function judge_repeat(_array,user_phone){
     return _.find(_array,function(obj){
@@ -25,7 +30,7 @@ function judge_repeat(_array,user_phone){
     })
 }
 
-var judge_prefix={
+var handle_by_prefix={
     'bm':function(sms_json){
         is_signing_up[Sign_up.get_is_signing_up()](sms_json)
     },
@@ -41,11 +46,11 @@ function trim(str){
 
 var is_bidding_up={
     'true':function(sms_json){
-        var is_sign=judge_repeat(sign_array(),sms_json.messages[0].phone);
-        var is_bid=judge_repeat(bid_array(),sms_json.messages[0].phone);
+        var message_obj=get_message_obj(sms_json);
+        var is_sign=judge_repeat(sign_array(),message_obj.phone);
+        var is_bid=judge_repeat(bid_array(),message_obj.phone);
         if(is_sign!=undefined&&is_bid==undefined){
-            var new_bidding=new Bidding(handle_sms(sms_json));
-            new_bidding.insert();
+            new_user.insert('bidding',handle_sms(sms_json));
         }
     },
     'false':function(){return false},
@@ -55,13 +60,12 @@ var is_bidding_up={
     'undefined':function(){return false}
 }
 
-
-
 var is_signing_up={
     'true':function(sms_json){
-        if(judge_repeat(sign_array(),sms_json.messages[0].phone)==undefined){
-            var new_sign_up=new Sign_up(handle_sms(sms_json));
-            new_sign_up.insert();
+        var message_obj=get_message_obj(sms_json);
+        if(judge_repeat(sign_array(),message_obj.phone)==undefined){
+              new_user.insert('sign_up',handle_sms(sms_json));
+
         }
     },
     'false':function(){return false},
@@ -69,3 +73,13 @@ var is_signing_up={
     'undefined':function(){return false}
 
 }
+
+
+function get_message_obj(sms_json){
+    return sms_json.messages[0];
+}
+
+
+
+
+
