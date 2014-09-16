@@ -58,19 +58,19 @@ describe("Bids and Bidding Render", function() {
                 }
             }
         };
-        var activity_ids = ["0", "1"]
+        var activity_ids = ["0", "1"];
         localStorage.activities = JSON.stringify(two_activities);
         localStorage.activity_ids = JSON.stringify(activity_ids);
-        localStorage.current_activity = "1";
+        localStorage.current_activity_id = "1";
         localStorage.is_bidding = "";
     });
 
     afterEach(function(){
         localStorage.clear();
-    })
+    });
 
     it("should show all bids", function(){
-        var bids = render_bids("1");
+        var bids = transform_bids_to_view_model("1");
 
         expect(bids.length).toBe(2);
         expect(bids[0].name).toBe("竞价1");
@@ -78,7 +78,7 @@ describe("Bids and Bidding Render", function() {
     });
 
     it("should show minimum not repeatable bidding", function(){
-        var biddings = render_biddings("1","竞价2");
+        var biddings = transform_biddings_to_view_model("1","竞价2");
 
         expect(biddings.length).toBe(1);
         expect(biddings[0].name).toBe("于硕");

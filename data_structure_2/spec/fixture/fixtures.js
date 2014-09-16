@@ -1,15 +1,15 @@
 function init_activity_database(){
     localStorage.activity_id_generator = "0";
-    localStorage.current_activity = "";
-    localStorage.actity_ids = [];
-    localStorage.activities = {};
+    localStorage.current_activity_id = "";
+    localStorage.activity_ids = "[]";
+    localStorage.activities = "{}";
 }
 
 
 function init_two_activity() {
     localStorage.activity_id_generator = 2;
     var activities = JSON.parse(localStorage.activities);
-    var activity_ids = JSON.parse(localStorage.actity_ids);
+    var activity_ids = JSON.parse(localStorage.activity_ids);
     var activity_1 = {
         id: "0",
         name: "first activity",
@@ -24,7 +24,7 @@ function init_two_activity() {
         sign_ups:[],
         bids:[],
         biddings:{}
-    }
+    };
     activities["0"] = activity_1;
     activities["1"] = activity_2;
     activity_ids.push("0","1");
